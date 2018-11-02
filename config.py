@@ -1,6 +1,6 @@
 import os
 
-DEBUG = True
+DEBUG = False
 
 # session加密的盐
 SECRET_KEY = os.urandom(24)
