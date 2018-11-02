@@ -1,0 +1,76 @@
+h2{ display: block; font-size: 1.5em; font-weight: bold; margin: 0 0;}
+h3{ font-size: 1.17em; font-weight: bold;}
+/*全局样式*/
+
+/*最新排行*/
+.newblogs {  overflow: hidden; width: 100%; clear: both; }
+.hometitle { padding: 0 10px;  line-height: 50px; height: 50px; font-size: 18px; ; border-bottom: #000 2px solid; position: relative; }
+h3.blogtitle { line-height: 30px; margin: 10px 0; }
+h3.blogtitle a:hover{ padding-left: 10px; text-decoration: none}
+.blogpic { overflow: hidden; width: 30%; max-height: 100px; display: block; float: left; margin-right: 20px; border-radius: 5px; }
+.newblogs #list { padding: 10px; overflow: hidden; margin-bottom: 0}
+.newblogs #list li { border-bottom: #000 1px solid; margin-bottom: 10px; overflow: hidden; }
+.autor { width: 100%; overflow: hidden; clear: both; margin: 20px 0 0 0; display: inline-block; color: #838383; font-size: 12px }
+.autor span { margin: 0 10px 0 0; padding-left: 20px }
+.autor span a { color: #096; }
+.autor span a:hover { text-decoration: underline }
+.lm { background: url(../../images/newsbg01.png)  no-repeat left center;}
+.dtime { background: url(../../images/newsbg02.png) no-repeat left center }
+.viewnum { background: url(../../images/newsbg03.png) no-repeat left center }
+.pingl { background: url(../../images/like.png) no-repeat left center }
+.blogpic img { width: 100%; }
+.bloginfo p { color: #888; overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical; display: -webkit-box; -webkit-line-clamp: 4; padding-top: 10px; font-size: 14px; }
+.more { font-size: 14px; float: right; margin-right: 10px;}
+
+/*搜索框*/
+.search{ border-radius: 10px; padding: 10px 0; background: #222; margin-bottom: 20px; overflow: hidden;}
+
+/*词云*/
+.cloud{ background: #222; border-radius: 10px; padding: 0 10px; margin-bottom: 20px; overflow: hidden;}
+.cloud ul{ padding: 10px; overflow: hidden;}
+.cloud ul a {
+    line-height: 24px; display: block; background: #999;
+    float: left; padding: 3px 11px; margin: 10px 10px 0 0;
+    border-radius: 8px; -moz-transition: all 0.5s; -webkit-transition: all 0.5s; -o-transition: all 0.5s;
+    transition: all 0.5s; color: #FFF }
+.cloud ul a:nth-child(8n-7) { background: #8A9B0F }
+.cloud ul a:nth-child(8n-6) { background: #EB6841 }
+.cloud ul a:nth-child(8n-5) { background: #3FB8AF }
+.cloud ul a:nth-child(8n-4) { background: #FE4365 }
+.cloud ul a:nth-child(8n-3) { background: #FC9D9A }
+.cloud ul a:nth-child(8n-2) { background: #EDC951 }
+.cloud ul a:nth-child(8n-1) { background: #C8C8A9 }
+.cloud ul a:nth-child(8n) { background: #83AF9B }
+.cloud ul a:first-child { background: #036564 }
+.cloud ul a:last-child { background: #3299BB }
+.cloud ul a:hover { border-radius: 0; text-shadow: #000 1px 1px 1px}
+
+/*点击排行*/
+.paihang { background: #222; border-radius: 10px; overflow: hidden; padding: 0 10px; margin-bottom: 20px }
+.paihang ul { padding: 10px; margin-bottom: 0}
+.paihang ul li { border-bottom: solid 1px #888; font-size: 14px; margin-bottom: 10px; padding: 0 0 10px 0; overflow: hidden }
+.paihang ul li b { height: 30px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: block; }
+.paihang ul li p { line-height: 24px; color: #888;  margin-bottom: 0}
+.paihang ul li a:hover { color: white }
+.paihang ul li:hover b a { color: white }
+.paihang li i { width: 90px; height: 70px; overflow: hidden; display: block; border: #efefef 1px solid; float: left; margin-right: 10px }
+.paihang li img {height: 100%; margin: auto; -moz-transition: all .5s ease; -webkit-transition: all .5s ease; transition: all .5s ease; }
+.paihang ul li:hover i img { transform: scale(1.1) }
+
+/*友情链接*/
+.links{ background: #222; border-radius: 10px; overflow: hidden; padding: 0 10px; margin-bottom: 20px}
+.links ul { padding: 10px; overflow: hidden; text-align: center; margin-bottom: 0}
+.links ul a { line-height: 24px;}
+.links ul li{ margin-bottom: 5px;}
+.links ul a:hover { text-decoration: underline }
+
+.t_nav{ margin-bottom: 20px; border-bottom: #bfbfbf 1px solid; font-size: 16px; font-weight: normal; line-height: 40px; width: 100%; overflow: hidden;}
+.t_nav .n1{ float: right; color: #fff;}
+.t_nav .n2{ width: 100px; display: block; background: #366; text-align: center; color: #fff; float: left;}
+
+.pagination {
+    display: inline-block;
+    padding: 10px 0;
+    margin: 0;
+    border-radius: 4px;
+}

@@ -1,0 +1,64 @@
+{% extends "main/base.html" %}
+{% from "_macro.html" import static %}
+{% from "main/_macro.html" import pages %}
+{% block title %}给我留言{% endblock %}
+
+{% block head %}
+    <script src="{{ static('main/js/message.js') }}"></script>
+    <link rel="stylesheet" href="{{ static('main/css/message.css') }}">
+{% endblock %}
+
+{% block body %}
+    <h5 class="h_title">给我留言</h5>
+    <div class="messge-blok">
+    <form action="" method="post">
+        <textarea class="form-control" rows="5" name="message1" placeholder="欢迎吐槽..."></textarea>
+        <div class="requried">
+            <div class="input-group form-group">
+              <span class="input-group-addon">昵称（必填）</span>
+              <input type="text" name="nickname1" class="form-control" placeholder="昵称">
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon">邮箱（必填）</span>
+              <input type="email" name="email1" class="form-control" placeholder="邮箱">
+            </div>
+        </div>
+        <div class="sub-btn">
+            <button type="button" class="btn btn-info message-sub-btn">立即提交</button>
+        </div>
+    </form>
+    </div>
+    <h5 class="h2_title">（{{ messages|length }}）位小伙伴给我留言</h5>
+    <div class="message-list" id="message-list">
+        {% for message in paginate.items %}
+        <div class="item form-group" message-id="{{ message.id }}">
+            <div class="inner-box">
+                <div class="head"><img src="{{ static('images/avatar.jpg') }}"></div>
+                <div class="content">
+                    {% if message.prev %}
+                    <div class="second-comm">
+                        <div class="mess">{{ message.prev.content }}</div>
+                        <div class="meta">
+                            <span>回复 {{ message.prev.nickname }}</span>
+                            <span>{{ message.prev.add_time }}</span>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="mess">{{ message.content }}</div>
+                    <div class="meta">
+                        <span class="meta-nickname">{{ message.nickname }}</span>
+                        <span>{{ message.add_time }}</span>
+                        <span><a class="reply-btn">回复</a></span>
+                    </div>
+                </div>
+            </div>
+            <div class="child-message-block"></div>
+        </div>
+        {% endfor %}
+        {% if paginate.has_prev or paginate.has_next %}
+        <div style="text-align: center">
+            {{ pages(paginate, endpoint=".message") }}
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}

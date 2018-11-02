@@ -1,0 +1,31 @@
+{% extends "main/base.html" %}
+{% from "_macro.html" import static %}
+
+{% block title %}关于自己{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ static('main/css/aboutme.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="ab-content">
+    <p class="ab-title">
+        <span class="n01">关于自己</span>
+        <span class="n02">尚未配妥剑，转眼便江湖。愿历尽千帆，归来仍少年。</span>
+    </p>
+
+    <h2>个人简介</h2>
+    <div class="profile">
+        <div class="avatar"><img src="{{ static('images/avatar.jpg') }}"></div>
+        <p class="abposition">爱生活、爱音乐、爱编程</p>
+        <div class="abtext">我的孤独是一座花园，我让自己登基，做风的君王。</div>
+        <button type="button" class="btn btn-info btn-lg more">了解更多</button>
+    </div>
+    <h2>联系我</h2>
+    <div class="contact-me">
+        <div class="qq"><a title="1254353037"><img src="{{ static('images/contact_qq.png') }}"></a></div>
+        <div class="email"><a title="1254353037@qq.com"><img src="{{ static('images/contact_email.png') }}"></a></div>
+        <div class="github"><a title="github" href="https://github.com/move-brick" target="_blank"><img src="{{ static('images/contact_github.png') }}"></a></div>
+    </div>
+</div>
+{% endblock %}

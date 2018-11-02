@@ -1,0 +1,44 @@
+.left-box { min-height: 650px; font-size: 14px; color: #333; border-radius: 6px; background: rgba(255,255,255,0.9); padding: 10px; }
+.t_nav { border-bottom: #247979 3px solid; font-size: 22px; font-weight: normal; margin: 0px 0 30px; }
+.c_titile { text-align: center; font-size: 24px; font-weight: 700; margin: 20px 0; color: #000 }
+.box { border: #ccc 1px dashed; text-align: center; padding: 5px 0; margin: 0 30px 15px 30px; color: #666 }
+.box span { margin: 0 15px }
+
+.left-box .message-content{ color: black; display: block; padding: 15px 30px; overflow:hidden; margin-bottom: 0; }
+.left-box .message-content .box { line-height: 25px; margin: 10px 0; text-indent: 2em }
+.left-box .message-content a{text-decoration: dotted; color: skyblue}
+.left-box .message-content a:hover{text-decoration: dotted; color: red}
+.left-box .message-content img {max-width: 100%;}
+.t_cate_img{ background: url("../../images/cate.png") no-repeat left center; width: 32px; height: 32px; display: block; float: left; margin: 5px 10px 0 0;}
+/*.t_cate{}*/
+
+div.like{margin: 50px 0;}
+div.like .like-btn{margin: 0 auto; display: block}
+
+.h_title{ font-size: 24px; padding:0 0px 10px 20px; border-bottom: #000 1px solid;}
+.comment-blok{padding: 10px 50px; overflow: hidden; margin:20px 0 50px 0;}
+.comment-blok textarea{font-size: 18px;  resize:none; height: 100px;}
+.requried{float: left; margin-top: 20px; width: 350px; color: #a6a6a6;}
+.sub-btn{float: right; margin-top: 10px;}
+
+.h2_title{ font-size: 18px; margin: 0 20px; padding-bottom: 10px; border-bottom: #000 1px solid; color: #3FB8AF}
+.comment-list{margin: 20px 20px;}
+.item{overflow: hidden; border-bottom: #a6a6a6 1px solid;}
+.inner-box{overflow: hidden;}
+.item .head{float: left;}
+.item .head img{ width: 50px; height: 50px; border-radius: 50%;}
+.item .comment-content{width: 640px; float: right; padding: 10px 10px 10px 0; }
+.item .comment-content .mess{ margin-bottom: 20px;}
+.item .comment-content .meta{color: #a6a6a6 ; float: right;}
+.item .comment-content .meta span{margin-right: 20px;}
+.meta-nickname{color:#3FB8AF}
+
+
+.message-content h1, h2, h3, h4 {font-size: 1.7em; padding: 10px 0; margin: 0 0; font-weight: 600}
+.message-content h1{font-size: 1.6em; }
+.message-content h2{font-size: 1.5em; }
+.message-content h3{font-size: 1.4em; }
+.message-content h4{font-size: 1.3em; }
+
+
+

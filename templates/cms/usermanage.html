@@ -1,0 +1,142 @@
+{% extends "cms/base.html" %}
+{% from "_macro.html" import static %}
+{% from "main/_macro.html" import pages %}
+
+{% block title %}用户管理{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ static('cms/css/navimages.css') }}">
+    <script src="{{ static('cms/js/usermanage.js') }}"></script>
+{% endblock %}
+
+{% block body_title %}用户管理{% endblock %}
+
+{% block body %}
+    <div class="top-container">
+        <button class="btn btn-info" data-toggle="modal" data-target="#banner1">添加用户</button>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th width="200px">邮箱</th>
+                <th width="200px">角色</th>
+                <th width="200px">加入时间</th>
+                <th width="200px">备注</th>
+                <th width="100px">状态</th>
+                <th width="95px">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in paginate.items %}
+            <tr user_id="{{ user.id }}" email="{{ user.email }}" remark="{{ user.remark }}" role="{{ user.role.name }}">
+                <td>{{ user.email }}</td>
+                <td>{{ user.role.name }}</td>
+                <td>{{ user.join_time }}</td>
+                <td>{{ user.remark }}</td>
+                {% if loop.first %}
+                <td><button class="btn btn-success btn-xs">可用</button></td>
+                <td></td>
+                {% else %}
+                    {% if user.status == 1%}
+                <td><button class="btn btn-success btn-xs lahei">可用</button></td>
+                    {% else %}
+                <td><button class="btn btn-danger btn-xs keyong">拉黑</button></td>
+                    {% endif %}
+                <td>
+                    <button class="btn btn-danger btn-xs dele-btn">删除</button>
+                    <button class="btn btn-info btn-xs update-btn" data-toggle="modal" data-target="#banner2">编辑</button>
+                </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if paginate.has_prev or paginate.has_next %}
+    <div style="text-align: center">
+        {{ pages(paginate, "cms.usermanage") }}
+    </div>
+    {% endif %}
+
+    {# 模态框1 添加用户#}
+    <div class="modal fade" tabindex="-1" id="banner1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">添加用户</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal">
+              <div class="form-group">
+                <label class="col-sm-2 control-label">邮箱</label>
+                <div class="col-sm-8">
+                  <input type="email" name="email" class="form-control" placeholder="邮箱">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">密码</label>
+                <div class="col-sm-8">
+                  <input type="password" name="password" class="form-control" placeholder="密码">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">备注</label>
+                <div class="col-sm-8">
+                  <input type="text" name="remark" class="form-control" placeholder="备注">
+                </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-2 control-label">角色</label>
+                  <div class="col-sm-8">
+                      <select name="role" class="form-control">
+                          {% for role in roles %}
+                              <option value="{{ role.name }}">{{ role.name }}</option>
+                          {% endfor %}
+                      </select>
+                  </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary" id="submit-btn1">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {# 模态框2 编辑用户#}
+    <div class="modal fade" tabindex="-1" id="banner2" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">编辑用户</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal">
+              <div class="form-group">
+                <label class="col-sm-2 control-label">备注</label>
+                <div class="col-sm-8">
+                  <input type="text" name="remark2" class="form-control" placeholder="备注">
+                </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-2 control-label">角色</label>
+                  <div class="col-sm-8">
+                      <select class="form-control" id="role2">
+                          {% for role in roles %}
+                              <option value="{{ role.name }}">{{ role.name }}</option>
+                          {% endfor %}
+                      </select>
+                  </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary submit-btn2">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% from "_macro.html" import static %}
+{% from "_macro.html" import bootcnd %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发布文章</title>
+    <script src="{{ static('kindeditor/kindeditor-all-min.js') }}"></script>
+    {{ bootcnd() }}
+    <link rel="stylesheet" href="{{ static('cms/css/post.css') }}">
+</head>
+<body>
+    <div class="myueditor">
+    <form action="{{ url_for('cms.post') }}" id="post-form" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <div class="row pre">
+          <div class="col-lg-6">
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">标题</span>
+                <input type="text" name="title" class="form-control">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="input-group">
+              <input type="file" name="img_file">
+            </div>
+          </div>
+        </div>
+        <div class="row pre">
+          <div class="col-lg-6">
+            <div class="input-group" id="post-category">
+                <span class="input-group-addon" id="basic-addon1">分类</span>
+                <select class="form-control" id="post-category" name="cate_id">
+                    {% for child in childs %}
+                    <option value="{{ child.id }}">{{ child.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+          </div>
+        </div>
+        <textarea id="editor_id" name="content" style="width: 100%"></textarea>
+{#        <input type="text" name="content" style="display: none">#}
+{#        <div class="form-group ueditor-block">#}
+{#            <script id="ueditor" type="text/plain"></script>#}
+{#        </div>#}
+    </form>
+        <div class="form-group submit-btn-block">
+            <span>{{ error|default('') }}</span>
+            <button type="button" class="btn btn-info post-submit-btn">发布文章</button>
+        </div>
+    </div>
+    <script>
+        var editor = null
+        KindEditor.ready(function(K) {
+            editor = K.create('#editor_id',{
+                resizeType: 1,
+                height: "550px",
+                    items:['source','code', '|', 'undo', 'redo', '|', 'justifyleft', 'justifycenter', 'justifyright','justifyfull',
+                    'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent',"|", 'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+        'italic', 'underline', "|", 'image', 'emoticons', 'link'],
+                uploadJson: "/kindeditor/upload/",
+                extraFileUploadParams : {
+                    csrf_token: "{{ csrf_token() }}"
+                },
+                filePostName: "image"  // 后台获取文件时的参数名
+            });
+        });
+    </script>
+    <script src="{{ static('cms/js/post.js') }}"></script>
+</body>
+</html>

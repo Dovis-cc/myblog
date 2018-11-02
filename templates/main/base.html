@@ -1,0 +1,43 @@
+{% from "_macro.html" import static %}
+{% from "_macro.html" import bootcnd %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="csrf_token" content="{{ csrf_token() }}">
+    <title>{% block title %}{% endblock %} -- 倚栏听风 | 个人博客</title>
+    {{ bootcnd() }}
+    <link rel="stylesheet" href="{{ static('main/css/base.css') }}">
+    <script src="{{ static('main/js/base.js') }}"></script>
+    {% block head %}{% endblock %}
+</head>
+<body>
+<div class="top_nav">
+  <div class="content">
+    <div class="logo">倚栏听风 | <span style="font-size: 22px">个人博客</span></div>
+    <div class="topnav">
+      <ul>
+          <li><a href="{{ url_for('main.message') }}" class="common-page">给我留言</a></li>
+          <li><a href="{{ url_for('main.aboutme') }}" class="about-page">关于自己</a></li>
+          <li><a href="{{ url_for('main.lifelist') }}" class="life-page">生活随笔</a></li>
+          <li><a href="{{ url_for('main.learnlist') }}" class="learn-page">学无止境</a></li>
+          <li><a href="{{ url_for('main.index') }}" class="index-page">倚栏听风</a></li>
+      </ul>
+    </div>
+  </div>
+  <span class="nav-login"><a href="{{ url_for('cms.login') }}">登录</a></span>
+</div>
+<div class="main">
+    {% block body %}{% endblock %}
+    <div class="left-box">
+        {% block left_box %}{% endblock %}
+    </div>
+    <div class="right-box">
+        {% block right_box %}{% endblock %}
+    </div>
+</div>
+<div class="footer">
+    <p>作者：<a href="{{ url_for('main.aboutme') }}">倚栏听风 | 陈文浩</a></p>
+</div>
+</body>
+</html>

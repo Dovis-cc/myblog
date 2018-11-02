@@ -1,0 +1,45 @@
+{% extends "cms/base.html" %}
+{% from "_macro.html" import static %}
+{% from "main/_macro.html" import pages %}
+
+{% block title %}评论管理{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ static('cms/css/navimages.css') }}">
+{#    <script src="{{ static('cms/js/comments.js') }}"></script>#}
+{% endblock %}
+{% block body_title %}评论管理{% endblock %}
+
+{% block body%}
+    <div class="top-container"></div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th width="50px">评论</th>
+                <th width="50px">文章</th>
+                <th width="50px">评论时间</th>
+                <th width="30px">昵称</th>
+                <th width="30px">邮箱</th>
+                <th width="50px">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for comment in paginate.items %}
+            <tr comment_id="{{ comment.id }}">
+                <td>{{ comment.content|truncate(30, true) }}</td>
+                <td>{{ comment.post.title }}</td>
+                <td>{{ comment.add_time}}</td>
+                <td>{{ comment.nickname }}</td>
+                <td>{{ comment.email }}</td>
+                <td>
+                    <button class="btn btn-danger btn-xs dele-btn">删除</button>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if paginate.has_prev or paginate.has_next %}
+    <div style="text-align: center">
+        {{ pages(paginate=paginate, endpoint="cms.comment") }}
+    </div>
+    {% endif %}
+{% endblock %}

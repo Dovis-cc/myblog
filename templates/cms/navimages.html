@@ -1,0 +1,130 @@
+{% extends "cms/base.html" %}
+{% from "_macro.html" import static %}
+
+{% block title %}题图管理{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ static('cms/css/navimages.css') }}">
+    <script src="{{ static('cms/js/navimages.js') }}"></script>
+{% endblock %}
+
+{% block body_title %}题图管理{% endblock %}
+
+{% block body %}
+    <div class="top-container">
+        <button class="btn btn-info" data-toggle="modal" data-target="#banner01">添加图片</button>
+        {% if error %}
+            <span>{{ error }}</span>
+        {% endif %}
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th >图片</th>
+                <th width="350px">图片描述</th>
+                <th width="400px">跳转链接</th>
+                <th width="100px">优先级</th>
+                <th width="100px">添加时间</th>
+                <th width="120px">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for image in images %}
+            <tr class="items" image_id="{{ image.id }}" href="{{ image.href }}" priority="{{ image.priority }}"
+            desc="{{ image.desc }}">
+                <td><a href="{{ image.link }}" target="_blank"><img src="{{ image.link }}" alt="图片" style="height: 65px; width: 100px;"></a></td>
+                <td style="vertical-align: middle">{{ image.desc }}</td>
+                <td style="vertical-align: middle"><a href="{{ image.href }}" target="_blank">{{ image.href }}</a></td>
+                <td style="vertical-align: middle">{{ image.priority }}</td>
+                <td style="vertical-align: middle">{{ image.join_time }}</td>
+                <td style="vertical-align: middle">
+                    <button class="btn btn-danger btn-sm delete-btn">删除</button>
+                    <button class="btn btn-info btn-sm update-btn">编辑</button>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {# 模态框1#}
+    <div class="modal fade" tabindex="-1" id="banner01" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">添加题图</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal add-form" action="{{ url_for('cms.add_timage') }}" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="csrf_token">
+              <div class="form-group">
+                <label class="col-sm-2 control-label">图片</label>
+                <div class="col-sm-8">
+                    <input type="file" name="link">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">图片描述</label>
+                <div class="col-sm-8">
+                   <input type="text" name="desc" class="form-control" placeholder="图片描述">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">跳转链接</label>
+                <div class="col-sm-8">
+                  <input type="text" name="href" class="form-control" placeholder="跳转链接">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">优先级</label>
+                <div class="col-sm-8">
+                   <input type="number" name="priority" class="form-control" placeholder="优先级">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary submit-btn01">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {# 模态框2#}
+    <div class="modal fade" tabindex="-1" id="banner02" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">编辑题图</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal" action="" method="post">
+              <div class="form-group">
+                <label class="col-sm-2 control-label">图片描述</label>
+                <div class="col-sm-8">
+                   <input type="text" name="desc" class="form-control" placeholder="图片描述">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">跳转链接</label>
+                <div class="col-sm-8">
+                  <input type="text" name="href" class="form-control" placeholder="跳转链接">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">优先级</label>
+                <div class="col-sm-8">
+                   <input type="number" name="priority" class="form-control" placeholder="优先级">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary submit-btn02">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

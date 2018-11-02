@@ -1,0 +1,66 @@
+{% from "_macro.html" import static %}
+{% from "_macro.html" import bootcnd %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="csrf_token" content="{{ csrf_token() }}">
+    <title>{% block title %}{% endblock %} -- 倚栏听风</title>
+    {{ bootcnd() }}
+    <link rel="stylesheet" href="{{ static('cms/css/base.css') }}">
+    <script src="{{ static('cms/js/base.js') }}"></script>
+    {% block head %}{% endblock %}
+</head>
+<body>
+     <nav class="navbar navbar-inverse navbar-fixed-top container-fluid" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <span class="navbar-brand">倚栏听风CMS管理系统</span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav to_write">
+           <li><image src="{{ static('images/write.jpg') }}"></image><a href="{{ url_for('cms.post') }}">写文章</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{ url_for('cms.profile') }}">{{ g.user.email }}</a></li>
+            <li><a href="{{ url_for('cms.logout') }}">注销</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+          <div class="col-sm-3 col-md-2 sidebar">
+              <ul class="nav-sidebar">
+                <li class="unfold"><a href="{{ url_for('cms.index') }}">倚栏听风</a></li>
+                <li class="profile-li">
+                    <a href="#">个人中心<span></span></a>
+                    <ul class="subnav">
+                        <li><a href="{{ url_for('cms.profile') }}">个人信息</a></li>
+                        <li><a href="{{ url_for('cms.resetpwd') }}">修改密码</a></li>
+                    </ul>
+                </li>
+                  {% if g.user.have_permission(Permission.b) %}
+                <li class="nav-group navimage-manage"><a href="{{ url_for('cms.navimages') }}">首页题图</a></li>
+                <li class="friendlink-manage"><a href="{{ url_for('cms.friendlink') }}">友链管理</a></li>
+                <li class="message-manage"><a href="{{ url_for('cms.message') }}">文章管理</a></li>
+                <li class="comments-manage"><a href="{{ url_for('cms.comment') }}">评论管理</a></li>
+                <li class="cate-manage"><a href="{{ url_for('cms.category', name='child') }}">分类管理</a></li>
+                  {% endif %}
+                  {% if g.user.have_permission(Permission.c) %}
+                <li class="nav-group user-manage"><a href="{{ url_for('cms.usermanage') }}">用户管理</a></li>
+                <li class="role-manage"><a href="{{ url_for('cms.rolemanage') }}">用户角色</a></li>
+                  {% endif %}
+            </ul>
+          </div>
+          <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1>{% block body_title %}{% endblock %}</h1>
+            <div class="main_content">
+                {% block body %}{% endblock %}
+            </div>
+          </div>
+      </div>
+    </div>
+</body>
+</html>

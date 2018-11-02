@@ -1,0 +1,16 @@
+.ab-content{ width: 100%; color: black; background: #EBEBEB; border-radius: 10px; margin: 10px 0;}
+.ab-title{line-height: 24px; margin-bottom: 0; display: block; padding: 20px 0 10px 20px; border-bottom: #247979 3px solid;}
+.ab-title .n01 { font-size: 24px;}
+.ab-title .n02 {float: right; margin-top: 5px;}
+
+.ab-content h2{ font-size: 22px; margin: 0 auto;line-height: 30px; text-align: center; padding: 10px 0; background-color: #FAFAFA;}
+.profile { margin: 25px 0; width: 100%; font-size: 18px; }
+.avatar {width: 100px;  margin: 0 auto;}
+.avatar img { width: 100px; height: 100px; border-radius: 50%;}
+.abposition { color: #1abc9c; text-align: center; margin: 20px 0;}
+.abtext { text-align: center; margin-bottom: 25px; color: #9a9a9a; line-height: 30px;}
+.more{ width: 200px; display: block; margin: 0 auto; }
+
+.contact-me{overflow: hidden; width: 360px; margin: 0 auto;}
+.contact-me div{float: left; padding: 20px 20px; width: 120px; height: 120px;}
+.contact-me div img { width: 80px; height: 80px; border-radius: 50%;}

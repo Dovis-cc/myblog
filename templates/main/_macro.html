@@ -1,0 +1,104 @@
+{% from "_macro.html" import static %}
+
+{% macro blog_list(paginate, endpoint, params={}) -%}
+<div class="newblogs">
+    <h2 class="hometitle">最新文章</h2>
+    <ul id="list">
+        {% for post in paginate.items %}
+        <li>
+            <h3 class="blogtitle"><a href="{{ url_for('main.view', post_id=post.id) }}" target="_blank">{{ post.title|trim |truncate(20,true) }}</a></h3>
+            <div class="bloginfo"><span class="blogpic"><a href="{{ post.img_link }}" target="_blank"><img src="{{ post.img_link }}" /></a></span>
+                <p>{{ post.content|striptags |trim |truncate(120, true) }}</p>
+             </div>
+            <div class="autor">
+                <span class="lm f_l">{{ post.category.name }}</span>
+                <span class="dtime f_l">{{ post.post_date }}</span>
+                <span class="viewnum f_l">浏览（{{ post.view }})</span>
+                <span class="pingl f_l">喜欢（{{ post.star }}）</span>
+                <span class="f_r"><a href="{{ url_for('main.view', post_id=post.id) }}" target="_blank" class="more">阅读原文</a></span>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% if paginate.has_next or paginate.has_prev %}
+        <div style="text-align: center">
+          {{ pages(paginate,endpoint, params) }}
+        </div>
+    {% endif %}
+</div>
+{%- endmacro %}
+
+{% macro search() -%}
+<div class="search">
+    <form class="navbar-form navbar-left" action="" method="get">
+        <div class="form-group">
+          <input type="text" class="form-control" name="key" placeholder="请输入关键字">
+        </div>
+        <button type="submit" class="btn btn-default search-btn">立即搜索</button>
+    </form>
+</div>
+{%- endmacro %}
+
+{% macro cloud(childs) -%}
+<div class="cloud">
+    <h2 class="hometitle">文章归类</h2>
+    <ul>
+        {% for child in childs %}
+        <a href="{{ url_for('main.tags', tag_id=child.id) }}">{{ child.name }}({{ child.posts|length }})</a>
+        {% endfor %}
+    </ul>
+</div>
+{%- endmacro %}
+
+{% macro paihang(posts) -%}
+<div class="paihang">
+    <h2 class="hometitle">点击排行</h2>
+    <ul>
+        {% for post in posts %}
+        <li>
+            <b><a href="{{ url_for('main.view', post_id=post.id) }}" title="{{ post.title }}" target="_blank">{{ post.title|trim |truncate(15, true) }}</a></b>
+            <p><i><img src="{{ post.img_link }}"></i>{{ post.content|striptags |trim |truncate(25, true) }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{%- endmacro %}
+
+{% macro links(fls) -%}
+<div class="links">
+    <h2 class="hometitle">友情链接</h2>
+    <ul>
+        {% for fl in fls %}
+        <li><a href="{{ fl.link }}" target="_blank">{{ fl.name }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{%- endmacro %}
+
+{% macro pages(paginate, endpoint, params={}) -%}
+      <ul class="pagination">
+        {% if not paginate.has_prev %}
+            <li  class="disabled"><a href="#">上一页</a></li>
+        {% else %}
+            <li><a href="{{ url_for(endpoint, page=paginate.page - 1, **params) }}">上一页</a></li>
+        {% endif %}
+
+        {% for p in paginate.iter_pages(left_edge=1, right_edge=1, left_current=2, right_current=3) %}
+            {% if p %}
+                {% if p == paginate.page%}
+                    <li class="active"><a href="{{ url_for(endpoint, page=p, **params) }}">{{ p }}</a></li>
+                {% else %}
+                    <li><a href="{{ url_for(endpoint, page=p, **params) }}">{{ p }}</a></li>
+                {% endif %}
+            {% else %}
+                <li class="disabled"><a href="#">&hellip;</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if paginate.has_next %}
+            <li><a href="{{ url_for(endpoint, page = paginate.page + 1, **params) }}">下一页</a></li>
+        {% else %}
+            <li class="disabled"><a href="#">下一页</a></li>
+        {% endif %}
+      </ul>
+{%- endmacro %}

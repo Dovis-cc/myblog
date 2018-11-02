@@ -1,0 +1,24 @@
+{% extends "main/base.html" %}
+{% from "_macro.html" import static %}
+{% from "main/_macro.html" import search %}
+{% from "main/_macro.html" import blog_list %}
+{% from "main/_macro.html" import cloud %}
+{% from "main/_macro.html" import paihang %}
+{% from "main/_macro.html" import links %}
+
+{% block title %}文章列表{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ static('main/css/list.css') }}">
+{% endblock %}
+
+{% block left_box %}
+    {{ blog_list(data.paginate, endpoint=data.endpoint, params=data.params)}}
+{% endblock %}
+
+{% block right_box %}
+    {{ search() }}
+    {{ paihang(data.hot_post) }}
+    {{ cloud(data.childs) }}
+    {{ links(data.friendlinks) }}
+{% endblock %}

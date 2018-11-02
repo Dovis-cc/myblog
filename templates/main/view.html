@@ -1,0 +1,76 @@
+{% extends "main/base.html" %}
+{% from "_macro.html" import static %}
+{% from "main/_macro.html" import search %}
+{% from "main/_macro.html" import cloud %}
+{% from "main/_macro.html" import paihang %}
+{% from "main/_macro.html" import links %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ static('main/css/list.css') }}">
+    <link rel="stylesheet" href="{{ static('main/css/view.css') }}">
+    <script src="{{ static('main/js/view.js') }}"></script>
+    <link href="{{ static('kindeditor/plugins/code/prettify.css') }}"  rel="stylesheet" type="text/css">
+    <script src="{{ static('kindeditor/plugins/code/prettify.js') }}"></script>
+    <script type="text/javascript">
+        prettyPrint();
+    </script>
+{% endblock %}
+
+{% block left_box %}
+    <h2 class="t_nav"><span class="t_cate_img"></span><span class="t_cate">{{ post.category.name }}</span></h2>
+    <h1 class="c_titile">{{ post.title }}</h1>
+    <p class="box">发布时间：{{ post.post_date }}<span>作者：{{ post.author.remark }}</span>阅读（{{ post.view }}）</p>
+    <div class="message-content">
+        {{ post.content|safe }}
+    </div>
+    <div class="like" post_id="{{ post.id }}">
+        <button type="button" class="btn btn-success like-btn">喜欢（{{ post.star }}）</button>
+    </div>
+    <h5 class="h_title">评论列表</h5>
+    <div class="comment-blok">
+        <form action="" method="post">
+        <textarea class="form-control" rows="5" name="comment" placeholder="欢迎吐槽..."></textarea>
+        <div class="requried">
+            <div class="input-group form-group">
+              <span class="input-group-addon">昵称（必填）</span>
+              <input type="text" name="nickname" class="form-control" placeholder="昵称">
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon">邮箱（必填）</span>
+              <input type="email" name="email" class="form-control" placeholder="邮箱">
+            </div>
+        </div>
+        <div class="sub-btn" post_id="{{ post.id }}">
+            <button type="button" class="btn btn-info comment-sub-btn">立即提交</button>
+        </div>
+    </form>
+    </div>
+    <h5 class="h2_title">（{{ data.comments|length }}）条评论</h5>
+    <div class="comment-list" id="comment-list">
+        {% for comment in data.comments %}
+        <div class="item form-group">
+            <div class="inner-box">
+                <div class="head"><img src="{{ static('images/avatar.jpg') }}"></div>
+                <div class="comment-content">
+                    <div class="mess">{{ comment.content }}</div>
+                    <div class="meta">
+                        <span class="meta-nickname">{{ comment.nickname }}</span>
+                        <span>{{ comment.add_time }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block right_box %}
+{{ cloud(data.childs) }}
+{{ paihang(data.hot_post) }}
+{{ links(data.friendlinks) }}
+{% endblock %}
+
+
+

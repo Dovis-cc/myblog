@@ -1,0 +1,24 @@
+.main{ background: rgba(255,255,255,0.9); color: black; border-radius: 10px; margin: 20px auto;}
+.h_title{ font-size: 26px; padding:0 0px 10px 20px; border-bottom: #000 2px solid;}
+.h2_title{ font-size: 18px; margin: 0 20px; padding-bottom: 10px; border-bottom: #000 2px solid; color: #3FB8AF}
+
+.messge-blok{padding: 10px 50px; overflow: hidden; margin:20px 0 50px 0;}
+.messge-blok textarea{font-size: 18px;  resize:none;}
+.requried{float: left; margin-top: 20px; width: 350px; color: #a6a6a6;}
+.sub-btn{float: right; margin-top: 10px;}
+
+.message-list{margin: 20px 20px;}
+.item{overflow: hidden; border-bottom: #a6a6a6 1px solid;}
+.inner-box{overflow: hidden;}
+.item .head{float: left;}
+.item .head img{ width: 50px; height: 50px; border-radius: 50%;}
+.item .content{width: 980px; float: right; padding: 10px 10px 10px 0; }
+.item .content .mess{ margin-bottom: 20px;}
+.item .content .meta{color: #a6a6a6 ; float: left;}
+.item .content .meta span{margin-right: 20px;}
+.meta-nickname{color:#3FB8AF}
+.second-comm{overflow: hidden; border: #a6a6a6 1px solid; border-radius: 10px; padding: 10px 10px; margin: 0 80px 20px 0;}
+
+.child-message-block{overflow: hidden; margin: 40px 80px; display: none}
+
+.reply-btn:hover {color:red;}

@@ -1,0 +1,54 @@
+{% extends "cms/base.html" %}
+{% from "_macro.html" import static %}
+{% from "main/_macro.html" import pages %}
+
+{% block title %}文章管理{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ static('cms/css/navimages.css') }}">
+    <script src="{{ static('cms/js/message.js') }}"></script>
+{% endblock %}
+{% block body_title %}文章管理{% endblock %}
+
+{% block body%}
+    <div class="top-container">
+        <div class="form-control-con">
+            <select class="form-control cate-filter" name="cate-filter">
+                <option disabled selected>分类显示</option>
+                <option value="0">全部文章</option>
+                {% for cate in cates %}
+                <option value="{{ cate.id }}">{{ cate.name }}（{{ cate.posts|length }}）</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th width="50px">标题</th>
+                <th width="30px">作者</th>
+                <th width="50px">分类</th>
+                <th width="50px">发布时间</th>
+                <th width="95px">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for post in paginate.items %}
+            <tr post_id="{{ post.id }}" post_name="{{ post.title }}">
+                <td><a href="{{ url_for('main.view', post_id=post.id) }}" target="_blank">{{ post.title }}</a></td>
+                <td>{{ post.author.remark }}</td>
+                <td>{{ post.category.name }}</td>
+                <td>{{ post.post_date}}</td>
+                <td>
+                    <button class="btn btn-danger btn-xs dele-btn">删除</button>
+                    <button class="btn btn-info btn-xs update-btn">编辑</button>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if paginate.has_prev or paginate.has_next %}
+    <div style="text-align: center">
+        {{ pages(paginate=paginate, endpoint="cms.message") }}
+    </div>
+    {% endif %}
+{% endblock %}

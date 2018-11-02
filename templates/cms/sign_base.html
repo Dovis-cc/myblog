@@ -1,0 +1,16 @@
+{% from "_macro.html" import static %}
+{% from "_macro.html" import bootcnd %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="csrf_token" content="{{ csrf_token() }}">
+    <title>{% block title %}{% endblock %} -- 倚栏听风</title>
+    {{ bootcnd() }}
+    <link rel="stylesheet" href="{{ static('cms/css/sign_base.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    {% block body %}{% endblock %}
+</body>
+</html>

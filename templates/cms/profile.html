@@ -1,0 +1,29 @@
+{% extends "cms/base.html" %}
+
+{% block title %}个人主页{% endblock %}
+{% block head %}
+
+{% endblock %}
+
+{% block body_title %}个人资料{% endblock %}
+
+{% block body %}
+    <table class="table table-bordered table-hover">
+        <tr>
+            <td>邮箱</td>
+            <td>{{ g.user.email }}</td>
+        </tr>
+        <tr>
+            <td>角色</td>
+            <td>{{ g.user.role.name }}</td>
+        </tr>
+        <tr>
+            <td>权限</td>
+            <td>{{ g.user.role.desc }}</td>
+        </tr>
+        <tr>
+            <td>加入时间</td>
+            <td>{{ g.user.join_time }}</td>
+        </tr>
+    </table>
+{% endblock %}

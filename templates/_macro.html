@@ -1,0 +1,11 @@
+{% macro static(filename) -%}
+    {{ url_for("static", filename=filename) }}
+{%- endmacro %}
+
+{% macro bootcnd() -%}
+    <script src="{{ static('common/bootstrap/jquery.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ static('common/bootstrap/bootstrap.min.css') }}">
+    <script src="{{ static('common/bootstrap/bootstrap.min.js') }}"></script>
+{%- endmacro %}
+
+

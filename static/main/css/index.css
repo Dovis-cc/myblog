@@ -1,0 +1,27 @@
+h2{ display: block; font-size: 1.5em; font-weight: bold; margin: 0 0;}
+h3{ font-size: 1.17em; font-weight: bold;}
+/*全局样式*/
+
+/*顶部图片*/
+.pics { margin-bottom: 20px; overflow: hidden }
+.pics ul li { width: 32.3%; float: left; display: block; overflow: hidden; border-radius: 10px; position: relative; }
+.pics ul li i { display: block; height: 155px; }
+.pics ul li:nth-child(2) { margin: 0 0 0 17px }
+.pics ul li:nth-child(3) { float: right }
+.pics ul li img { margin: auto; min-height: 100%; min-width: 100%; -moz-transition: all .5s ease; -webkit-transition: all .5s ease; transition: all .5s ease;}
+.pics ul li span { position: absolute; background: rgba(0,0,0,0.8); color: #FFF; bottom: 8%; left: 0; right: 0; display: block; padding: 0 15px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; line-height: 30px;  }
+.pics ul li:hover img { transform: scale(1.05) }
+
+
+/*我的名片*/
+.card{
+    width: 100%; border-radius: 10px; overflow: hidden;
+    background: url(../../images/quote-bg.png) no-repeat top right rgb(34,34,34);
+    box-shadow: 0px 1px 0px rgba(255,255,255,.1), inset 0px 1px 1px rgba(0,0,0,.7);
+    font-size: 14px; margin-bottom: 20px;}
+.card h5 { margin: 10px 10px 0; color: #3F3E3C; font-size: 24px;}
+.avatar { margin: 0 auto 20px; width: 100px}
+.avatar img { width: 100px; height: 100px; border-radius: 50%;}
+.abname { color: #9a9a9a; font-weight: bold; font-size: 16px; margin-bottom: 10px; text-align: center }
+.abposition { color: #1abc9c; text-align: center}
+.abtext { padding: 10px 30px; color: #9a9a9a; line-height: 20px; margin: 10px auto}

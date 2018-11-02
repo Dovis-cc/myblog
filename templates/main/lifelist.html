@@ -1,0 +1,31 @@
+{% extends "main/base.html" %}
+{% from "_macro.html" import static %}
+{% from "main/_macro.html" import blog_list %}
+{% from "main/_macro.html" import search %}
+{% from "main/_macro.html" import paihang %}
+{% from "main/_macro.html" import cloud %}
+{% from "main/_macro.html" import links %}
+
+{% block title %}生活随笔{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ static('main/css/list.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="t_nav">
+    <span class="n1">人生如路，须在荒凉中走出繁华的风景来。</span>
+    <span class="n2">生活随笔</span>
+</div>
+{% endblock %}
+
+{% block left_box %}
+    {{ blog_list( data.paginate, endpoint="main.lifelist") }}
+{% endblock %}
+
+{% block right_box %}
+    {{ search() }}
+    {{ paihang(data.hot_post) }}
+    {{ cloud(data.childs) }}
+    {{ links(data.friendlinks) }}
+{% endblock %}

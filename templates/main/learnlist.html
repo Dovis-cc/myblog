@@ -1,0 +1,31 @@
+{% extends "main/base.html" %}
+{% from "_macro.html" import static %}
+{% from "main/_macro.html" import search %}
+{% from "main/_macro.html" import blog_list %}
+{% from "main/_macro.html" import cloud %}
+{% from "main/_macro.html" import paihang %}
+{% from "main/_macro.html" import links %}
+
+{% block title %}学无止境{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ static('main/css/list.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="t_nav">
+    <span class="n1">不要轻易放弃。学习成长的路上，我们长路漫漫，只因学无止境。</span>
+    <span class="n2">学无止境</span>
+</div>
+{% endblock %}
+
+{% block left_box %}
+    {{ blog_list(data.paginate, endpoint = "main.learnlist")}}
+{% endblock %}
+
+{% block right_box %}
+    {{ search() }}
+    {{ paihang(data.hot_post) }}
+    {{ cloud(data.childs) }}
+    {{ links(data.friendlinks) }}
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "main/base.html" %}
+{% from "_macro.html" import static %}
+{% from "main/_macro.html" import search %}
+{% from "main/_macro.html" import cloud %}
+{% from "main/_macro.html" import paihang %}
+{% from "main/_macro.html" import links %}
+{% from "main/_macro.html" import blog_list %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ static('main/css/index.css') }}">
+    <link rel="stylesheet" href="{{ static('main/css/list.css') }}">
+    <script src="{{ static('main/js/index.js') }}"></script>
+{% endblock %}
+
+{% block title %}首页{% endblock %}
+
+{% block body %}
+<div class="pics">
+    <ul>
+        {% for ti in data.title_images %}
+      <li><i><a href="{{ ti.href }}" target="_blank">
+          <img src="{{ ti.link }}">
+      </a></i><span>{{ ti.desc }}</span></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+
+{% block left_box %}
+{{ blog_list(data.paginate, ".index") }}
+{% endblock %}
+
+{% block right_box %}
+<div class="card">
+    <h5>我的名片</h5>
+    <div class="avatar"> <img src="{{ static('images/avatar.jpg') }}" alt="avatar"> </div>
+    <p class="abname"><a href="{{ url_for('main.aboutme') }}">倚栏听风 | 陈文浩</a></p>
+    <p class="abposition">爱生活、爱音乐、爱编程</p>
+    <div class="abtext">我的孤独是一座花园，我让自己登基，做风的君王。</div>
+</div>
+{{ search() }}
+{{ cloud(data.childs) }}
+{{ paihang(data.hot_post) }}
+{{ links(data.friendlinks) }}
+{% endblock %}
+
+
+

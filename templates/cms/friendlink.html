@@ -1,0 +1,88 @@
+{% extends "cms/base.html" %}
+{% from "_macro.html" import static %}
+
+{% block title %}友链管理{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ static('cms/css/navimages.css') }}">
+    <script src="{{ static('cms/js/friendlink.js') }}"></script>
+{% endblock %}
+
+{% block body_title %}友链管理{% endblock %}
+
+{% block body %}
+    <div class="top-container">
+        <button class="btn btn-info add-btn">添加友链</button>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th width="250px">友链名称</th>
+                <th width="300px">跳转链接</th>
+                <th width="100px">优先级</th>
+                <th width="100px">添加时间</th>
+                <th width="350px">备注</th>
+                <th width="95px">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for fl in fls %}
+            <tr fl_id="{{ fl.id }}" name="{{ fl.name }}" link="{{ fl.link }}" priority="{{ fl.priority }}"
+                remark="{{ fl.remark }}">
+                <td>{{ fl.name }}</td>
+                <td><a href="{{ fl.link }}" target="_blank">{{ fl.link }}</a></td>
+                <td>{{ fl.priority }}</td>
+                <td>{{ fl.join_time }}</td>
+                <td>{{ fl.remark }}</td>
+                <td>
+                    <button class="btn btn-danger btn-xs delete-btn">删除</button>
+                    <button class="btn btn-info btn-xs update-btn">编辑</button>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {# 模态框 #}
+    <div class="modal fade" tabindex="-1" id="banner" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">添加友链</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal">
+              <div class="form-group">
+                <label class="col-sm-2 control-label">链接名称</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control"  name="name"  placeholder="链接名称">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">跳转链接</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="link" placeholder="跳转链接">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">优先级</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control" name="priority" placeholder="优先级（数字，最大为10）">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">备注</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="remark" placeholder="备注">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary submit-btn">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

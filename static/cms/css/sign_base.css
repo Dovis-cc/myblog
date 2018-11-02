@@ -1,0 +1,30 @@
+body{
+    background: #F1F1F1;
+}
+.outter_box{
+    background: white;
+    width: 400px;
+    margin: 150px auto;
+    padding-bottom: 30px;
+}
+.inner_box{
+    width: 300px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.title{
+    color: #EA6F5A;
+    margin: 30px auto;
+    text-align: center;
+}
+#phone_captcha{
+    cursor: pointer;
+}
+
+.forget_pwd{
+    float: right;
+}
+
+#get_captcha{
+    cursor: pointer;
+}
